@@ -1,5 +1,4 @@
 spring:
-  port: 8081
   cloud:
     discovery:
       enabled: false
