@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Mono<TokenDTO> login(LoginDTO login) {
-
+        System.out.println("User: "+login.getUsername());
         return userRepository
                 .findByUsernameOrEmail(login.getUsername(), login.getUsername())
                 .filter(user -> passwordEncoder.matches(login.getPassword(), user.getPassword()))

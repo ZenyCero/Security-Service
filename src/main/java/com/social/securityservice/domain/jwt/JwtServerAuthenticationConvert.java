@@ -21,9 +21,11 @@ public class JwtServerAuthenticationConvert implements ServerAuthenticationConve
     public Mono<Authentication> convert(ServerWebExchange exchange) {
         String path = exchange.getRequest().getPath().toString();
 
-        if (!path.contains("auth/validate") && path.contains("auth"))
+        if (!path.contains("auth/validate") && path.contains("auth")) {
+            System.out.println("JwtServerAuthenticationConvert - primer if");
             return Mono.empty();
-
+        }
+        System.out.println("JwtServerAuthenticationConvert - try to aouth");
         String auth = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if (auth == null)
             return Mono.error(new CustomException("Token wasn't found", HttpStatus.BAD_REQUEST));

@@ -25,6 +25,7 @@ public class AuthHandler {
     }
 
     public Mono<ServerResponse> login(ServerRequest request){
+        System.out.println("controller login");
         Mono<LoginDTO> loginDTO = request.bodyToMono(LoginDTO.class);
         return loginDTO.flatMap(login -> ServerResponse
                 .ok()
