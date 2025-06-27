@@ -1,0 +1,41 @@
+spring:
+  port: 8081
+  cloud:
+    discovery:
+      enabled: false
+
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            endpoint: https://securityvaultkey.vault.azure.net/ #${SECRETKEYVAULTURL}
+
+  application:
+    name: security-service
+
+  r2dbc:
+    url: ${SECRETURLDB} #r2dbc:pool:mssql://security-server.database.windows.net:1433/security-db
+    username: ${SECRETUSERDB}
+    password: ${SECRETPASSDB}
+
+azure:
+  keyvault:
+    tenant-id: 81e701d5-0d70-4fdd-9388-c8ba9d7a9975
+
+eureka:
+  client:
+    enabled: false
+  instance:
+    registerWithEureka: false
+    fetchRegistry: false
+
+jwt:
+  expiration: 15
+  secret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
